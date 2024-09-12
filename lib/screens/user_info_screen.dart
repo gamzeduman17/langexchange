@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:langexchange/models/languages_level_model.dart';
+import 'package:langexchange/models/user_model.dart';
 import 'package:langexchange/services/language_service.dart';
-import 'package:langexchange/utils/user_signIn_validators.dart';
+import 'package:langexchange/validations/user_signIn_validators.dart';
+import 'package:langexchange/services/user_service.dart';
+import 'package:langexchange/utils/constants.dart';
 
 class UserInfoScreen extends StatefulWidget {
   @override
@@ -15,9 +18,10 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   List<String> learningLanguages = [];
   List<Language> availableLanguages = [];
 
-  final LanguageService _languageService = LanguageService(); //dilleri aldık
+  final LanguageService _languageService = LanguageService(); // dilleri aldık
+  final UserSevice _userService = UserSevice();// Kullanıcı servisi
 
-  @override //sayfa yüklendiği an dilleri al
+  @override // sayfa yüklendiği an dilleri al
   void initState() {
     super.initState();
     _loadLanguages();
@@ -39,9 +43,16 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
           SnackBar(content: Text('Username already exists')),
         );
       } else {
-        print('User Name: $username');
-        print('Native Language: $nativeLanguage');
-        print('Languages To Learn: $learningLanguages');
+        UserModel user = UserModel(
+          userId: UuidHelper.generateUuid(),//general string Guid
+          username: username,
+          nativeLanguage: nativeLanguage,
+          otherLanguages: {}, // Dil seviyeleri burada belirtilmeli
+          learningLanguages: learningLanguages,
+          isActive: true
+        );
+        await _userService.saveUserInfo(user); // Kullanıcı bilgilerini kaydet
+        Navigator.pop(context); // Kullanıcıyı önceki sayfaya döndür
       }
     }
   }
@@ -57,10 +68,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
             TextFormField(
               decoration: InputDecoration(labelText: 'Username'),
               onChanged: (value) => username = value,
-              validator: (value) {
-                String? error = Validators.validateUsername(value!);
-                return error;
-              },
+              validator: (value) => Validators.validateUsername(value!),
             ),
             DropdownButtonFormField(
               decoration: InputDecoration(labelText: 'Native Language'),
