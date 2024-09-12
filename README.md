@@ -1,16 +1,17 @@
-# langexchange
+Language Exchange Application
+This project is a language exchange application designed to facilitate communication between users in different languages. The application allows users to specify their native languages and choose the languages they want to learn. Additionally, it provides a matching feature for users to exchange languages.
 
-A new Flutter project.
+Features
+User sign-in and registration
+Selection of native language and languages to learn
+Updating user information
+Matching and chatting between users
 
-## Getting Started
+Türkçe 
+Bu proje, kullanıcıların farklı dillerde iletişim kurmalarını sağlamak amacıyla geliştirilmiş bir dil değişimi uygulamasıdır. Uygulama, kullanıcıların ana dillerini belirlemelerine ve öğrenmek istedikleri dilleri seçmelerine olanak tanır. Ayrıca, kullanıcılar arasında dil değişimi yapmak için eşleştirme özelliği sunar.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Özellikler
+Kullanıcı girişi ve kaydı
+Ana dil ve öğrenilmek istenen dillerin seçimi
+Kullanıcı bilgilerini güncelleme
+Kullanıcılar arasında eşleştirme ve sohbet
